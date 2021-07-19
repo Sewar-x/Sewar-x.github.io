@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>8.1 树 | Sewar Blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="./mylogo.png">
+    <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+    <link rel="alternate" type="application/atom+xml" href="https://sewar-x.github.io/atom.xml" title="Sewar Blog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://sewar-x.github.io/feed.json" title="Sewar Blog JSON Feed">
+    <link rel="alternate" type="application/rss+xml" href="https://sewar-x.github.io/rss.xml" title="Sewar Blog RSS Feed">
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+    <meta name="description" content="Hello! WelCome to Sewar Blog">
+    <meta property="og:url" content="/algorithms/tree.html">
+    <meta property="og:site_name" content="Sewar Blog">
+    <meta property="og:title" content="8.1 树">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en-US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Sewar Blog">
+    <meta name="theme-color" content="#46bd87">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <link rel="preload" href="/assets/css/0.styles.94575269.css" as="style"><link rel="preload" href="/assets/js/app.20b59c1c.js" as="script"><link rel="preload" href="/assets/js/vendors~layout-Layout.7ae890f6.js" as="script"><link rel="preload" href="/assets/js/vendors~layout-Blog~layout-Layout~layout-NotFound.c088b2c6.js" as="script"><link rel="preload" href="/assets/js/page-81树.c09e86ec.js" as="script"><link rel="preload" href="/assets/js/vendors~layout-Blog~layout-Layout~layout-NotFound~layout-Slide.ee9dd2ad.js" as="script"><link rel="prefetch" href="/assets/js/28.cd8947dd.js"><link rel="prefetch" href="/assets/js/layout-Blog.d596480b.js"><link rel="prefetch" href="/assets/js/layout-Layout.f99637d0.js"><link rel="prefetch" href="/assets/js/layout-NotFound.182e0f14.js"><link rel="prefetch" href="/assets/js/layout-Slide.fed1bf43.js"><link rel="prefetch" href="/assets/js/page--dab65542.35144c96.js"><link rel="prefetch" href="/assets/js/page-CSS.fc57d728.js"><link rel="prefetch" href="/assets/js/page-Home.7fb4cffa.js"><link rel="prefetch" href="/assets/js/page-JavaScript基础.71b0edac.js"><link rel="prefetch" href="/assets/js/page-Node.ceffc72a.js"><link rel="prefetch" href="/assets/js/page-Promise基础和实现.5b841132.js"><link rel="prefetch" href="/assets/js/page-VUE-SSR.b9fb0483.js"><link rel="prefetch" href="/assets/js/page-VUE2X.adaf1c3b.js"><link rel="prefetch" href="/assets/js/page-VUEX.3a3cb25f.js"><link rel="prefetch" href="/assets/js/page-Vue-Router.f533bae1.js"><link rel="prefetch" href="/assets/js/page-VueVsReact.e017fa6c.js"><link rel="prefetch" href="/assets/js/page-WEB安全.c21c4519.js"><link rel="prefetch" href="/assets/js/page-前端工程化.91895869.js"><link rel="prefetch" href="/assets/js/page-基础.1bf950e4.js"><link rel="prefetch" href="/assets/js/page-操作系统.1741dddc.js"><link rel="prefetch" href="/assets/js/page-数据结构算法.40bf61b8.js"><link rel="prefetch" href="/assets/js/page-浏览器.f2087989.js"><link rel="prefetch" href="/assets/js/vendors~photo-swipe.84c94741.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.94575269.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container has-navbar has-sidebar has-anchor"><header class="navbar"><!----> <div class="content__navbar-start"></div> <button title="Sidebar Button" class="sidebar-button"><span class="icon"></span></button> <a href="/" class="home-link router-link-active"><img src="./mylogo.png" alt="Sewar Blog" class="logo"> <!----> <span class="site-name can-hide">Sewar Blog</span></a> <!----> <div class="content__navbar-center"></div> <div class="links"><button aria-hidden="true" class="color-button"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="skin-icon"><path d="M224 800c0 9.6 3.2 44.8 6.4 54.4 6.4 48-48 76.8-48 76.8s80 41.6 147.2 0 134.4-134.4
+        38.4-195.2c-22.4-12.8-41.6-19.2-57.6-19.2C259.2 716.8 227.2 761.6 224 800zM560 675.2l-32
+        51.2c-51.2 51.2-83.2 32-83.2 32 25.6 67.2 0 112-12.8 128 25.6 6.4 51.2 9.6 80 9.6 54.4 0
+        102.4-9.6 150.4-32l0 0c3.2 0 3.2-3.2 3.2-3.2 22.4-16 12.8-35.2
+        6.4-44.8-9.6-12.8-12.8-25.6-12.8-41.6 0-54.4 60.8-99.2 137.6-99.2 6.4 0 12.8 0 22.4
+        0 12.8 0 38.4 9.6 48-25.6 0-3.2 0-3.2 3.2-6.4 0-3.2 3.2-6.4 3.2-6.4 6.4-16 6.4-16 6.4-19.2
+        9.6-35.2 16-73.6 16-115.2 0-105.6-41.6-198.4-108.8-268.8C704 396.8 560 675.2 560 675.2zM224
+        419.2c0-28.8 22.4-51.2 51.2-51.2 28.8 0 51.2 22.4 51.2 51.2 0 28.8-22.4 51.2-51.2 51.2C246.4
+        470.4 224 448 224 419.2zM320 284.8c0-22.4 19.2-41.6 41.6-41.6 22.4 0 41.6 19.2 41.6 41.6 0
+        22.4-19.2 41.6-41.6 41.6C339.2 326.4 320 307.2 320 284.8zM457.6 208c0-12.8 12.8-25.6 25.6-25.6
+        12.8 0 25.6 12.8 25.6 25.6 0 12.8-12.8 25.6-25.6 25.6C470.4 233.6 457.6 220.8 457.6 208zM128
+        505.6C128 592 153.6 672 201.6 736c28.8-60.8 112-60.8 124.8-60.8-16-51.2 16-99.2
+        16-99.2l316.8-422.4c-48-19.2-99.2-32-150.4-32C297.6 118.4 128 291.2 128 505.6zM764.8
+        86.4c-22.4 19.2-390.4 518.4-390.4 518.4-22.4 28.8-12.8 76.8 22.4 99.2l9.6 6.4c35.2 22.4
+        80 12.8 99.2-25.6 0 0 6.4-12.8 9.6-19.2 54.4-105.6 275.2-524.8 288-553.6
+        6.4-19.2-3.2-32-19.2-32C777.6 76.8 771.2 80 764.8 86.4z"></path></svg> <div class="color-picker-menu" style="display:none;"><div class="theme-options"><ul class="themecolor-select"><label for="themecolor-select">Theme Color:</label> <li><span class="default-theme"></span></li> </ul> <div class="darkmode-toggle"><label for="darkmode-toggle" class="desc">Theme Mode:</label> <div class="darkmode-switch"><div class="item day"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon light-icon"><path d="M512 256a42.667 42.667 0 0 0 42.667-42.667V128a42.667 42.667 0 0 0-85.334 0v85.333A42.667 42.667 0 0 0 512 256zm384 213.333h-85.333a42.667 42.667 0 0 0 0 85.334H896a42.667 42.667 0 0 0 0-85.334zM256 512a42.667 42.667 0 0 0-42.667-42.667H128a42.667 42.667 0 0 0 0 85.334h85.333A42.667 42.667 0 0 0 256 512zm9.387-298.667a42.667 42.667 0 0 0-59.307 62.72l61.44 59.307a42.667 42.667 0 0 0 31.147 11.947 42.667 42.667 0 0 0 30.72-13.227 42.667 42.667 0 0 0 0-60.16zm459.946 133.974a42.667 42.667 0 0 0 29.44-11.947l61.44-59.307a42.667 42.667 0 0 0-57.6-62.72l-61.44 60.587a42.667 42.667 0 0 0 0 60.16 42.667 42.667 0 0 0 28.16 13.227zM512 768a42.667 42.667 0 0 0-42.667 42.667V896a42.667 42.667 0 0 0 85.334 0v-85.333A42.667 42.667 0 0 0 512 768zm244.48-79.36a42.667 42.667 0 0 0-59.307 61.44l61.44 60.587a42.667 42.667 0 0 0 29.44 11.946 42.667 42.667 0 0 0 30.72-12.8 42.667 42.667 0 0 0 0-60.586zm-488.96 0-61.44 59.307a42.667 42.667 0 0 0 0 60.586 42.667 42.667 0 0 0 30.72 12.8 42.667 42.667 0 0 0 28.587-10.666l61.44-59.307a42.667 42.667 0 0 0-59.307-61.44zM512 341.333A170.667 170.667 0 1 0 682.667 512 170.667 170.667 0 0 0 512 341.333z" fill="currentColor"></path></svg></div> <div class="item auto active"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon auto-icon"><path d="M460.864 539.072H564.8L510.592 376l-49.728 163.072zM872 362.368V149.504H659.648L510.528 0l-149.12 149.504H149.12v212.928L0 511.872l149.12 149.504v212.928h212.352l149.12 149.504 149.12-149.504h212.352V661.376l149.12-149.504L872 362.368zM614.464 693.12l-31.616-90.624H438.272l-31.616 90.624h-85.888l144.576-407.68h90.368l144.576 407.68h-85.824zm0 0" fill="currentColor"></path></svg></div> <div class="item night"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon dark-icon"><path d="M935.539 630.402c-11.43-11.432-28.674-14.739-43.531-8.354-46.734 20.103-96.363 30.297-147.508 30.297-99.59 0-193.221-38.784-263.64-109.203-108.637-108.637-139.61-270.022-78.908-411.148a39.497 39.497 0 0 0-51.886-51.887c-52.637 22.64-100.017 54.81-140.826 95.616-85.346 85.346-132.346 198.821-132.346 319.52 0 120.7 47.001 234.172 132.347 319.519S408.063 947.11 528.76 947.11c120.7 0 234.172-47.003 319.52-132.351 40.809-40.81 72.978-88.19 95.616-140.826a39.497 39.497 0 0 0-8.356-43.532z" fill="currentColor"></path></svg></div></div> <!----></div></div></div></button> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link router-link-active"><!---->
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Front-end Basics" class="dropdown-title"><span class="title"><!---->
+        Basics
+      </span> <span class="arrow"></span></button> <ul class="nav-dropdown"><li class="dropdown-item"><a href="/algorithms/css/" class="nav-link"><!---->
+  Css
+</a></li><li class="dropdown-item"><a href="/algorithms/javascript/" class="nav-link"><!---->
+  JavaScript
+</a></li><li class="dropdown-item"><a href="/algorithms/promise/" class="nav-link"><!---->
+  Promise
+</a></li><li class="dropdown-item"><a href="/algorithms/browser-performance/" class="nav-link"><!---->
+  Browser &amp; Performance
+</a></li><li class="dropdown-item"><a href="/algorithms/Web-Security/" class="nav-link"><!---->
+  Web Security
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Source analysis" class="dropdown-title"><span class="title"><!---->
+        Source analysis
+      </span> <span class="arrow"></span></button> <ul class="nav-dropdown"><li class="dropdown-item"><a href="/algorithms/vue/" class="nav-link"><!---->
+  Vue 2.x
+</a></li><li class="dropdown-item"><a href="/algorithms/vuex/" class="nav-link"><!---->
+  VueX
+</a></li><li class="dropdown-item"><a href="/algorithms/vueRouter/" class="nav-link"><!---->
+  Vue Router
+</a></li><li class="dropdown-item"><a href="/algorithms/vueSSR/" class="nav-link"><!---->
+  Vue SSR
+</a></li><li class="dropdown-item"><a href="/algorithms/axios/" class="nav-link"><!---->
+  Axios
+</a></li><li class="dropdown-item"><a href="/algorithms/Frame-contrast/" class="nav-link"><!---->
+  Frame Contrast
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Front-end Engineering" class="dropdown-title"><span class="title"><!---->
+        Engineering
+      </span> <span class="arrow"></span></button> <ul class="nav-dropdown"><li class="dropdown-item"><a href="/algorithms/Front-end-Engineering/" class="nav-link"><!---->
+  Front-end Engineering
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Computer Basics" class="dropdown-title"><span class="title"><!---->
+        Computer Basics
+      </span> <span class="arrow"></span></button> <ul class="nav-dropdown"><li class="dropdown-item"><a href="/algorithms/algorithms/" class="nav-link"><!---->
+  Algorithms
+</a></li><li class="dropdown-item"><a href="/algorithms/operating-system/" class="nav-link"><!---->
+  Operating System
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="node.js" class="dropdown-title"><span class="title"><!---->
+        Node.js
+      </span> <span class="arrow"></span></button> <ul class="nav-dropdown"><li class="dropdown-item"><a href="/algorithms/node/" class="nav-link"><!---->
+  Node.js
+</a></li></ul></div></div></nav> <!----> <!----> <!----> <div class="content__navbar-end"></div></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><div vocab="https://schema.org/" typeof="Person" class="blogger-info mobile"><div data-balloon-pos="down" role="navigation" class="blogger hasIntro"><img property="image" alt="Blogger Avatar" src="./mylogo.png" class="avatar round"> <div property="name" class="name">Sewar Blog</div> <meta property="url" content="../outline.md"></div> <div class="num-wrapper"><div><div class="num">16</div> <div>Articles</div></div> <div><div class="num">0</div> <div>Category</div></div> <div><div class="num">0</div> <div>Tags</div></div> <div><div class="num">16</div> <div>Timeline</div></div></div> <div class="media-links-wrapper"><a href="https://github.com/Sewar-x" rel="noopener noreferrer" target="_blank" aria-label="Github" data-balloon-pos="up" class="media-link"><span class="sr-only">Github</span> <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon icon-github"><circle cx="512" cy="512" r="512" fill="#171515"></circle> <path d="M509.423 146.442c-200.317 0-362.756 162.42-362.756 362.8 0 160.266 103.936 296.24 248.109 344.217 18.139 3.327 24.76-7.872 24.76-17.486 0-8.613-.313-31.427-.49-61.702-100.912 21.923-122.205-48.63-122.205-48.63-16.495-41.91-40.28-53.067-40.28-53.067-32.937-22.51 2.492-22.053 2.492-22.053 36.407 2.566 55.568 37.386 55.568 37.386 32.362 55.438 84.907 39.43 105.58 30.143 3.296-23.444 12.667-39.43 23.032-48.498-80.557-9.156-165.246-40.28-165.246-179.297 0-39.604 14.135-71.988 37.342-97.348-3.731-9.178-16.18-46.063 3.556-96.009 0 0 30.46-9.754 99.76 37.19 28.937-8.048 59.97-12.071 90.823-12.211 30.807.14 61.843 4.165 90.822 12.21 69.26-46.944 99.663-37.189 99.663-37.189 19.792 49.946 7.34 86.831 3.61 96.01 23.25 25.359 37.29 57.742 37.29 97.347 0 139.366-84.82 170.033-165.637 179.013 13.026 11.2 24.628 33.342 24.628 67.182 0 48.498-.445 87.627-.445 99.521 0 9.702 6.535 20.988 24.945 17.444 144.03-48.067 247.881-183.95 247.881-344.175 0-200.378-162.442-362.798-362.802-362.798z" fill="#FFF"></path></svg></a><a href="1567910907" rel="noopener noreferrer" target="_blank" aria-label="Wechat" data-balloon-pos="up" class="media-link"><span class="sr-only">Wechat</span> <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon icon-wechat"><circle cx="512" cy="512" r="512" fill="#1AC88E"></circle> <path d="M827.551 578.742a176.583 176.583 0 0 0-185.685-158.379 172.942 172.942 0 0 0-186.3 158.379 172.942 172.942 0 0 0 185.686 158.379 282.169 282.169 0 0 0 65.536-10.923l60.689 32.768-16.384-54.613a166.275 166.275 0 0 0 76.458-125.611zm-245.76-27.307a21.845 21.845 0 1 1 0-43.69 24.872 24.872 0 0 1 27.307 21.845 24.872 24.872 0 0 1-27.921 21.845h.614zm121.356 0a21.845 21.845 0 1 1 0-43.69 24.872 24.872 0 0 1 27.306 21.845 24.872 24.872 0 0 1-28.512 21.845h1.206z" fill="#FFF"></path> <path d="M623.662 400.953h21.23A222.709 222.709 0 0 0 419.772 245.6a208.145 208.145 0 0 0-223.323 189.94 182.044 182.044 0 0 0 89.201 150.483l-22.436 67.356 78.279-39.435a389.575 389.575 0 0 0 78.279 10.923h20.616a163.226 163.226 0 0 1-6.667-46.718 182.044 182.044 0 0 1 189.94-177.197zm-121.379-60.69a27.921 27.921 0 1 1 0 55.843 31.562 31.562 0 0 1-33.36-27.921 31.562 31.562 0 0 1 34.59-27.921h-1.23zM346.34 396.107a31.562 31.562 0 0 1-33.383-27.921 31.562 31.562 0 0 1 33.383-27.921 27.921 27.921 0 1 1 0 55.842z" fill="#FFF"></path></svg></a></div></div> <hr> <!----> <div class="content__sidebar-top"></div> <nav class="sidebar-nav-links"><div class="nav-item"><a href="/" class="nav-link router-link-active"><!---->
+  Home
+</a></div><div class="nav-item"><div class="mobile-dropdown-wrapper"><button type="button" aria-label="Front-end Basics" class="dropdown-title"><span class="title"><!---->
+      Basics
+    </span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/css/" class="nav-link"><!---->
+  Css
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/javascript/" class="nav-link"><!---->
+  JavaScript
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/promise/" class="nav-link"><!---->
+  Promise
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/browser-performance/" class="nav-link"><!---->
+  Browser &amp; Performance
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/Web-Security/" class="nav-link"><!---->
+  Web Security
+</a></li></ul></div></div><div class="nav-item"><div class="mobile-dropdown-wrapper"><button type="button" aria-label="Source analysis" class="dropdown-title"><span class="title"><!---->
+      Source analysis
+    </span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/vue/" class="nav-link"><!---->
+  Vue 2.x
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/vuex/" class="nav-link"><!---->
+  VueX
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/vueRouter/" class="nav-link"><!---->
+  Vue Router
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/vueSSR/" class="nav-link"><!---->
+  Vue SSR
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/axios/" class="nav-link"><!---->
+  Axios
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/Frame-contrast/" class="nav-link"><!---->
+  Frame Contrast
+</a></li></ul></div></div><div class="nav-item"><div class="mobile-dropdown-wrapper"><button type="button" aria-label="Front-end Engineering" class="dropdown-title"><span class="title"><!---->
+      Engineering
+    </span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/Front-end-Engineering/" class="nav-link"><!---->
+  Front-end Engineering
+</a></li></ul></div></div><div class="nav-item"><div class="mobile-dropdown-wrapper"><button type="button" aria-label="Computer Basics" class="dropdown-title"><span class="title"><!---->
+      Computer Basics
+    </span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/algorithms/" class="nav-link"><!---->
+  Algorithms
+</a></li><li class="dropdown-item"><!----> <a href="/algorithms/operating-system/" class="nav-link"><!---->
+  Operating System
+</a></li></ul></div></div><div class="nav-item"><div class="mobile-dropdown-wrapper"><button type="button" aria-label="node.js" class="dropdown-title"><span class="title"><!---->
+      Node.js
+    </span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/node/" class="nav-link"><!---->
+  Node.js
+</a></li></ul></div></div> <!----></nav> <!----> <div class="content__sidebar-center"></div> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><!----> <span class="title">8.1 树</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/algorithms/tree/#_8-1-树" class="sidebar-link">8.1 树</a></li><li><a href="/algorithms/tree/#_8-2-二叉树" class="sidebar-link">8.2 二叉树</a></li><li><a href="/algorithms/tree/#_8-3-平衡二叉树" class="sidebar-link">8.3 平衡二叉树</a></li><li><a href="/algorithms/tree/#_8-4-在代码中如何去表示一棵二叉树" class="sidebar-link">8.4 在代码中如何去表示一棵二叉树</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-4-1-链式存储法" class="sidebar-link heading3">8.4.1 链式存储法</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-4-2-数组存储法-适用于完全二叉树" class="sidebar-link heading3">8.4.2 数组存储法（适用于完全二叉树）</a></li></ul></li><li><a href="/algorithms/tree/#_8-5-二叉树的遍历" class="sidebar-link">8.5 二叉树的遍历</a></li><li><a href="/algorithms/tree/#_8-6-二叉查找树-bst树" class="sidebar-link">8.6 二叉查找树（BST树）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-6-1-基本操作" class="sidebar-link heading3">8.6.1 基本操作</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-6-2-遍历" class="sidebar-link heading3">8.6.2 遍历</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-6-3-bst树的局限" class="sidebar-link heading3">8.6.3 BST树的局限</a></li></ul></li><li><a href="/algorithms/tree/#_8-7-平衡二叉查找树-avl树" class="sidebar-link">8.7 平衡二叉查找树（AVL树）</a></li><li><a href="/algorithms/tree/#_8-8-红黑树" class="sidebar-link">8.8 红黑树</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-8-1-什么是红黑树" class="sidebar-link heading3">8.8.1 什么是红黑树</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-8-2-红黑树-vs-平衡二叉树-avl树" class="sidebar-link heading3">8.8.2 红黑树 VS 平衡二叉树（AVL树）</a></li></ul></li><li><a href="/algorithms/tree/#_8-9-trie-树" class="sidebar-link">8.9 Trie 树</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-9-1-什么是-trie-树" class="sidebar-link heading3">8.9.1 什么是 Trie 树</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-9-2-trie树的应用-字符串匹配" class="sidebar-link heading3">8.9.2 Trie树的应用：字符串匹配</a></li></ul></li><li><a href="/algorithms/tree/#_8-10-b-树、b-树-感兴趣进" class="sidebar-link">8.10 B 树、B+ 树（感兴趣进）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-10-1-多叉查找树" class="sidebar-link heading3">8.10.1 多叉查找树</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-10-2-b-树-b-tree" class="sidebar-link heading3">8.10.2 B 树(B-tree)</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-10-3-b-树" class="sidebar-link heading3">8.10.3 B+树</a></li></ul></li><li><a href="/algorithms/tree/#_8-11-加深" class="sidebar-link">8.11 加深</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-1-二叉树的中序遍历" class="sidebar-link heading3">8.11.1 二叉树的中序遍历</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-2-二叉树的后序遍历" class="sidebar-link heading3">8.11.2 二叉树的后序遍历</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-3-二叉树的层次遍历" class="sidebar-link heading3">8.11.3 二叉树的层次遍历</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-4-二叉树的层序遍历" class="sidebar-link heading3">8.11.4 二叉树的层序遍历</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-5-重构二叉树-从前序与中序遍历序列构造二叉树" class="sidebar-link heading3">8.11.5 重构二叉树：从前序与中序遍历序列构造二叉树</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-6-二叉树的最大深度" class="sidebar-link heading3">8.11.6 二叉树的最大深度</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-7-二叉树的最近公共祖先" class="sidebar-link heading3">8.11.7 二叉树的最近公共祖先</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-8-平衡二叉树" class="sidebar-link heading3">8.11.8 平衡二叉树</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-9-路径总和" class="sidebar-link heading3">8.11.9 路径总和</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-10-对称二叉树" class="sidebar-link heading3">8.11.10 对称二叉树</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-11给定一个二叉树-找到该树中两个指定节点间的最短距离" class="sidebar-link heading3">8.11.11给定一个二叉树, 找到该树中两个指定节点间的最短距离</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-12-二叉搜索树中第k小的元素" class="sidebar-link heading3">8.11.12 二叉搜索树中第K小的元素</a></li><li class="sidebar-sub-header"><a href="/algorithms/tree/#_8-11-13-实现-trie-前缀树" class="sidebar-link heading3">8.11.13 实现 Trie（前缀树）</a></li></ul></li></ul></section></li></ul> <!----> <div class="content__sidebar-bottom"></div> <!----></aside> <main class="page"><nav class="breadcrumb"><ol vocab="https://schema.org/" typeof="BreadcrumbList"><li property="itemListElement" typeof="ListItem"><a href="/algorithms/" property="item" typeof="WebPage" class="router-link-active"><!----> <span property="name">数据结构/算法</span></a> <meta property="position" content="1"></li><li property="itemListElement" typeof="ListItem" class="is-active"><a href="/algorithms/tree/" aria-current="page" property="item" typeof="WebPage" class="router-link-exact-active router-link-active"><!----> <span property="name">8.1 树</span></a> <meta property="position" content="2"></li></ol></nav> <!----> <div class="content__page-top"></div> <div vocab="https://schema.org/" typeof="Article" class="page-title"><h1><!----> <span property="headline">8.1 树</span></h1> <div class="page-info"><!----> <!----><!----><span aria-label="Writing Date📅" data-balloon-pos="down" class="time-info"><svg viewBox="0 0 1030 1024" xmlns="http://www.w3.org/2000/svg" class="icon calendar-icon"><path d="M716.4 110.137c0-18.753-14.72-33.473-33.472-33.473-18.753 0-33.473 14.72-33.473 33.473v33.473h66.993v-33.473zm-334.87 0c0-18.753-14.72-33.473-33.473-33.473s-33.52 14.72-33.52 33.473v33.473h66.993v-33.473zm468.81 33.52H716.4v100.465c0 18.753-14.72 33.473-33.472 33.473a33.145 33.145 0 0 1-33.473-33.473V143.657H381.53v100.465c0 18.753-14.72 33.473-33.473 33.473a33.145 33.145 0 0 1-33.473-33.473V143.657H180.6A134.314 134.314 0 0 0 46.66 277.595v535.756A134.314 134.314 0 0 0 180.6 947.289h669.74a134.36 134.36 0 0 0 133.94-133.938V277.595a134.314 134.314 0 0 0-133.94-133.938zm33.473 267.877H147.126a33.145 33.145 0 0 1-33.473-33.473c0-18.752 14.72-33.473 33.473-33.473h736.687c18.752 0 33.472 14.72 33.472 33.473a33.145 33.145 0 0 1-33.472 33.473z" fill="currentColor"></path></svg> <span property="datePublished">2021-7-15</span></span><!----><!----><span aria-label="Reading Time⌛" data-balloon-pos="down" class="reading-time-info"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon timer-icon"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z" fill="currentColor"></path></svg> <span>About 34 min</span> <meta property="timeRequired" content="PT34M"></span></div> <!----> <hr></div> <div class="anchor-place-holder"><aside id="anchor"><div class="anchor-wrapper"><ul class="anchor-list"><li class="anchor"><a href="/algorithms/tree/#_8-1-树" class="anchor-link heading2"><div>8.1 树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-2-二叉树" class="anchor-link heading2"><div>8.2 二叉树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-3-平衡二叉树" class="anchor-link heading2"><div>8.3 平衡二叉树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-4-在代码中如何去表示一棵二叉树" class="anchor-link heading2"><div>8.4 在代码中如何去表示一棵二叉树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-4-1-链式存储法" class="anchor-link heading3"><div>8.4.1 链式存储法</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-4-2-数组存储法-适用于完全二叉树" class="anchor-link heading3"><div>8.4.2 数组存储法（适用于完全二叉树）</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-5-二叉树的遍历" class="anchor-link heading2"><div>8.5 二叉树的遍历</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-6-二叉查找树-bst树" class="anchor-link heading2"><div>8.6 二叉查找树（BST树）</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-6-1-基本操作" class="anchor-link heading3"><div>8.6.1 基本操作</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-6-2-遍历" class="anchor-link heading3"><div>8.6.2 遍历</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-6-3-bst树的局限" class="anchor-link heading3"><div>8.6.3 BST树的局限</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-7-平衡二叉查找树-avl树" class="anchor-link heading2"><div>8.7 平衡二叉查找树（AVL树）</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-8-红黑树" class="anchor-link heading2"><div>8.8 红黑树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-8-1-什么是红黑树" class="anchor-link heading3"><div>8.8.1 什么是红黑树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-8-2-红黑树-vs-平衡二叉树-avl树" class="anchor-link heading3"><div>8.8.2 红黑树 VS 平衡二叉树（AVL树）</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-9-trie-树" class="anchor-link heading2"><div>8.9 Trie 树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-9-1-什么是-trie-树" class="anchor-link heading3"><div>8.9.1 什么是 Trie 树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-9-2-trie树的应用-字符串匹配" class="anchor-link heading3"><div>8.9.2 Trie树的应用：字符串匹配</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-10-b-树、b-树-感兴趣进" class="anchor-link heading2"><div>8.10 B 树、B+ 树（感兴趣进）</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-10-1-多叉查找树" class="anchor-link heading3"><div>8.10.1 多叉查找树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-10-2-b-树-b-tree" class="anchor-link heading3"><div>8.10.2 B 树(B-tree)</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-10-3-b-树" class="anchor-link heading3"><div>8.10.3 B+树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-加深" class="anchor-link heading2"><div>8.11 加深</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-1-二叉树的中序遍历" class="anchor-link heading3"><div>8.11.1 二叉树的中序遍历</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-2-二叉树的后序遍历" class="anchor-link heading3"><div>8.11.2 二叉树的后序遍历</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-3-二叉树的层次遍历" class="anchor-link heading3"><div>8.11.3 二叉树的层次遍历</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-4-二叉树的层序遍历" class="anchor-link heading3"><div>8.11.4 二叉树的层序遍历</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-5-重构二叉树-从前序与中序遍历序列构造二叉树" class="anchor-link heading3"><div>8.11.5 重构二叉树：从前序与中序遍历序列构造二叉树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-6-二叉树的最大深度" class="anchor-link heading3"><div>8.11.6 二叉树的最大深度</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-7-二叉树的最近公共祖先" class="anchor-link heading3"><div>8.11.7 二叉树的最近公共祖先</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-8-平衡二叉树" class="anchor-link heading3"><div>8.11.8 平衡二叉树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-9-路径总和" class="anchor-link heading3"><div>8.11.9 路径总和</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-10-对称二叉树" class="anchor-link heading3"><div>8.11.10 对称二叉树</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-11给定一个二叉树-找到该树中两个指定节点间的最短距离" class="anchor-link heading3"><div>8.11.11给定一个二叉树, 找到该树中两个指定节点间的最短距离</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-12-二叉搜索树中第k小的元素" class="anchor-link heading3"><div>8.11.12 二叉搜索树中第K小的元素</div></a></li><li class="anchor"><a href="/algorithms/tree/#_8-11-13-实现-trie-前缀树" class="anchor-link heading3"><div>8.11.13 实现 Trie（前缀树）</div></a></li></ul></div></aside></div> <!----> <div class="content__content-top"></div> <div class="theme-default-content content__default"><h2 id="_8-1-树"><a href="#_8-1-树" class="header-anchor">#</a> 8.1 树</h2> <p>不同于我们上面介绍的线性结构，树是一种非线性结构。</p> <p>图：</p> <p><img src="/assets/img/tree.54a0bf61.png" alt="图片"></p> <p>它遵循：</p> <ul><li>仅有唯一一个根节点，没有节点则为空树</li> <li>除根节点外，每个节点都有并仅有唯一一个父节点</li> <li>节点间不能形成闭环</li></ul> <p>这就是树！</p> <p>树有几个概念：</p> <ul><li>拥有相同父节点的节点，互称为兄弟节点</li> <li><strong>节点的深度</strong> ：从根节点到该节点所经历的边的个数</li> <li><strong>节点的高度</strong> ：节点到叶节点的最长路径</li> <li>树的高度：根节点的高度</li></ul> <p><img src="/assets/img/tree2.52fcf7ef.png" alt="图片"></p> <p>B、C、D就互称为兄弟节点，其中，节点B的高度为2，节点B的深度为 1，树的高度为3</p> <h4 id="高度"><a href="#高度" class="header-anchor">#</a> 高度</h4> <p>树的高度计算公式：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFGsUgS1HpzIOw9oJQazjQFfShXicAXENfOmy9zCNQNMpe6ZqAfQtiaxxQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>下图每个节点值都代表来当前节点的高度：</p> <p><img src="/assets/img/tree3.86d8c763.png" alt="图片"></p> <h2 id="_8-2-二叉树"><a href="#_8-2-二叉树" class="header-anchor">#</a> 8.2 二叉树</h2> <p>二叉树，故名思义，最多仅有两个子节点的树（最多能分两个叉的树🤦‍♀️）：</p> <p>图：</p> <p><img src="/assets/img/tree4.dff4f466.png" alt="图片"></p> <h2 id="_8-3-平衡二叉树"><a href="#_8-3-平衡二叉树" class="header-anchor">#</a> 8.3 平衡二叉树</h2> <p>二叉树中，每一个节点的左右子树的高度相差不能大于 1，称为平衡二叉树。</p> <p><img src="/assets/img/tree6.593e3622.png" alt="图片"></p> <p>另外还有满二叉树、完全二叉树等：</p> <ul><li><strong>满二叉树</strong>：除了叶结点外每一个结点都有左右子叶且叶子结点都处在最底层的二叉树</li> <li><strong>完全二叉树</strong>：深度为h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第h 层所有的结点都连续集中在最左边</li></ul> <h2 id="_8-4-在代码中如何去表示一棵二叉树"><a href="#_8-4-在代码中如何去表示一棵二叉树" class="header-anchor">#</a> 8.4 在代码中如何去表示一棵二叉树</h2> <h3 id="_8-4-1-链式存储法"><a href="#_8-4-1-链式存储法" class="header-anchor">#</a> 8.4.1 链式存储法</h3> <p>二叉树的存储很简单，在二叉树中，我们看到每个节点都包含三部分：</p> <ul><li>当前节点的 val</li> <li>左子节点 left</li> <li>右子节点 right</li></ul> <p>所以我们可以将每个节点定义为：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function Node(val) {
+    // 保存当前节点 key 值
+    this.val = val
+    // 指向左子节点
+    this.left = null
+    // 指向右子节点
+    this.right = null
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>一棵二叉树可以由根节点通过左右指针连接起来形成一个树。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function BinaryTree() {
+  let Node = function (val) {
+    this.val = val
+    this.left = null
+    this.right = null
+  }
+  let root = null
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="_8-4-2-数组存储法-适用于完全二叉树"><a href="#_8-4-2-数组存储法-适用于完全二叉树" class="header-anchor">#</a> 8.4.2 数组存储法（适用于完全二叉树）</h3> <p>下图就是一棵完全二叉树，</p> <p>如果我们把根节点存放在位置 <code>i=1</code> 的位置，则它的左子节点位置为 <code>2i = 2</code> ，右子节点位置为 <code>2i+1 = 3</code> 。</p> <p>如果我们选取 B 节点 <code>i=2</code> ，则它父节点为 <code>i/2 = 1</code> ，左子节点 <code>2i=4</code> ，右子节点  <code>2i+1=5</code> 。</p> <p>以此类推，我们发现所有的节点都满足这三种关系：</p> <ul><li>位置为 i 的节点，它的父节点位置为 <code>i/2</code></li> <li>它的左子节点 <code>2i</code></li> <li>它的右子节点  <code>2i+1</code></li></ul> <p>因此，如果我们把完全二叉树存储在数组里（从下标为 1 开始存储），我们完全可以通过下标找到任意节点的父子节点。从而完整的构建出这个完全二叉树。这就是数组存储法。</p> <p>数组存储法相对于链式存储法不需要为每个节点创建它的左右指针，更为节省内存。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFLJ6Lw6LLgBjoiaQPugAzHNmeaRIWs4iblzkicKYZb9WicfcHT7CTxTrlyw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h2 id="_8-5-二叉树的遍历"><a href="#_8-5-二叉树的遍历" class="header-anchor">#</a> 8.5 二叉树的遍历</h2> <p>二叉树的遍历可分为：</p> <ul><li>前序遍历</li> <li>中序遍历</li> <li>后序遍历</li></ul> <p>所谓前、中、后，不过是根的顺序，即也可以称为先根遍历、中根遍历、后根遍历</p> <h4 id="_1-前序遍历"><a href="#_1-前序遍历" class="header-anchor">#</a> 1. 前序遍历</h4> <p>对于二叉树中的任意一个节点，先打印该节点，然后是它的左子树，最后右子树</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFPOMatZwFr8CCnDm90jh0hn16ev4jc95TnMicCPDaGRiavWgkKXRMmhVw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h4 id="_2-中序遍历"><a href="#_2-中序遍历" class="header-anchor">#</a> 2. 中序遍历</h4> <p>对于二叉树中的任意一个节点，先打印它的左子树，然后是该节点，最后右子树</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxF9f2QueBnSgoQwVZnNOiaB9Qhhxp15OpeGyu5bXrAIAr8NBZ7PZoicEFQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h4 id="_3-后序遍历"><a href="#_3-后序遍历" class="header-anchor">#</a> 3. 后序遍历</h4> <p>对于二叉树中的任意一个节点，先打印它的左子树，然后是右子树，最后该节点</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFlP79J1xUwf55fUiasJJtBrBVBefeHtCB9oia8HCczJkMZicWy7vxIS9Rg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h4 id="_4-代码实现-前序遍历为例"><a href="#_4-代码实现-前序遍历为例" class="header-anchor">#</a> 4. 代码实现（前序遍历为例）</h4> <p>所以，遍历二叉树的过程也就是一个递归的过程，例如前序遍历，先遍历根节点，然后是根的左子树，最后右子树；遍历根节点的左子树的时候，又是先遍历左子树的根节点，然后左子树的左子树，左子树的右子树…….</p> <p>所以，它的核心代码就是：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 前序遍历核心代码
+const preOrderTraverseNode = (node) =&gt; {
+    if(node) {
+        // 先根节点
+        result.push(node.val)
+        // 然后遍历左子树
+        preOrderTraverseNode(node.left)
+        // 再遍历右子树
+        preOrderTraverseNode(node.right)
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>完整代码如下：</p> <h5 id="递归实现"><a href="#递归实现" class="header-anchor">#</a> 递归实现</h5> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 前序遍历
+const preorderTraversal = (root) =&gt; {
+    let result = []
+    var preOrderTraverseNode = (node) =&gt; {
+        if(node) {
+            // 先根节点
+            result.push(node.val)
+            // 然后遍历左子树
+            preOrderTraverseNode(node.left)
+            // 再遍历右子树
+            preOrderTraverseNode(node.right)
+        }
+    }
+    preOrderTraverseNode(root)
+    return result
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>我们既然可以使用递归实现，那么是否也可以使用迭代实现喃？</p> <h5 id="迭代实现"><a href="#迭代实现" class="header-anchor">#</a> 迭代实现</h5> <p>利用栈来记录遍历的过程，实际上，递归就使用了调用栈，所以这里我们可以使用栈来模拟递归的过程</p> <ul><li>首先根入栈</li> <li>将根节点出栈，将根节点值放入结果数组中</li> <li>然后遍历左子树、右子树，因为栈是先入后出，所以，我们先右子树入栈，然后左子树入栈</li> <li>继续出栈（左子树被出栈）…….</li></ul> <p>依次循环出栈遍历入栈，直到栈为空，遍历完成</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 前序遍历
+const preorderTraversal = (root) =&gt; {
+    const list = [];
+    const stack = [];
+    
+    // 当根节点不为空的时候，将根节点入栈
+    if(root) stack.push(root)
+    while(stack.length &gt; 0) {
+        const curNode = stack.pop()
+        // 第一步的时候，先访问的是根节点
+        list.push(curNode.val)
+        
+        // 我们先打印左子树，然后右子树
+        // 所以先加入栈的是右子树，然后左子树
+        if(curNode.right !== null) {
+            stack.push(curNode.right)
+        }
+        if(curNode.left !== null) {
+            stack.push(curNode.left)
+        }
+    }
+    return list
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h5 id="复杂度分析"><a href="#复杂度分析" class="header-anchor">#</a> 复杂度分析：</h5> <p>空间复杂度：O(n)</p> <p>时间复杂度：O(n)</p> <p>至此，我们已经实现了二叉树的前序遍历，尝试思考一下二叉树的中序遍历如何实现喃？</p> <h2 id="_8-6-二叉查找树-bst树"><a href="#_8-6-二叉查找树-bst树" class="header-anchor">#</a> 8.6 二叉查找树（BST树）</h2> <p>有的笔者也称它为二叉搜索树，都是一个意思。</p> <p>二叉树本身没有多大的意义，直到有位大佬提出一个 trick。</p> <p>如果我们规定一颗二叉树上的元素拥有顺序，所有比它小的元素在它的左子树，比它大的元素在它的右子树，那么我们不就可以很快地查找某个元素了吗？</p> <p>不得不说这是一个非常天才的想法，于是，二叉查找树诞生了。</p> <p>所以，二叉查找树与二叉树不同的是，它在二叉树的基础上，增加了对二叉树上节点存储位置的限制：二叉搜索树上的每个节点都需要满足：</p> <ul><li>左子节点值小于该节点值</li> <li>右子节点值大于等于该节点值</li></ul> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxF2hAghe2aqBqtibGia4ibd6Iwuicg05vOjPAEOMMCWG3yP3aGfxtQ5lsSCw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>在二叉树中，所有子节点值都是没有固定规律的，所以使用二叉树存储结构存储数据时，查找数据的时间复杂度为 O(n)，因为它要查找每一个节点。</p> <p>而使用二叉查找树就不同了，例如上图，我们如果要查找 6 ，先从根节点 10 比较，6 比 10 小，则查找左子树，再与 8 比较，6 比 8 小，继续查找 8 的左子树，也就是 6，我们找到了元素，结束。</p> <h3 id="_8-6-1-基本操作"><a href="#_8-6-1-基本操作" class="header-anchor">#</a> 8.6.1 基本操作</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>function BinarySearchTree() {
+  let Node = function (key) {
+    this.key = key
+    this.left = null
+    this.right = null
+  }
+  let root = null
+  
+  // 插入
+  this.insert = function(key){}
+  
+  // 查找
+  this.search = function(key){}
+  
+  // 删除
+  this.remove = function(key){}
+  
+  // 最大值
+  this.max = function(){}
+  
+  // 最小值
+  this.min = function(){}
+  
+  // 中序遍历
+  this.inOrderTraverse = function(){}
+  
+  // 先序遍历
+  this.preOrderTraverse = function(){}
+  
+  // 后序遍历
+  this.postOrderTraverse = function(){}
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p><strong>插入：</strong></p> <ul><li>首先创建一个新节点</li> <li>判断树是否为空，为空则设置插入的节点为根节点，插入成功，返回</li> <li>如果不为空，则比较该节点与根结点，比根小，插入左子树，否则插入右子树</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>function insert(key) {
+  // 创建新节点
+  let newNode = new Node(key)
+  // 判断是否为空树
+  if(root === null) {
+    root = newNode
+  } else {
+    insertNode(root, newNode)
+  }
+}
+
+// 将 insertNode 插入到 node 子树上
+function insertNode(node, newNode) {
+  if(newNode.key &lt; node.key) {
+    // 插入 node 左子树
+    if(node.left === null) {
+      node.left = newNode
+    } else {
+      insertNode(node.left, newNode)
+    }
+  } else {
+    // 插入 node 右子树
+    if(node.right === null) {
+      node.right = newNode
+    } else {
+      insertNode(node.right, newNode)
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p><strong>最值：</strong></p> <p>最小值：树最左端的节点</p> <p>最大值：树最右端的节点</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 最小值
+function min() {
+  let node = root
+  if(node) {
+    while(node &amp;&amp; node.left !== null) {
+      node = node.left
+    }
+    return node.key
+  }
+  return null
+}
+
+// 最大值
+function max() {
+  let node = root
+  if(node) {
+    while(node &amp;&amp; node.right !== null) {
+      node = node.right
+    }
+    return node.key
+  }
+  return null
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p><strong>查找：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function search(key) {
+  return searchNode(root, key)
+}
+
+function searchNode(node, key) {
+  if(node === null) 
+    return false
+  if(key &lt; node.key) {
+    return searchNode(node.left, key)
+  } else if(key &gt; node.key) {
+    return searchNode(node.right, key)
+  } else {
+    return true
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><strong>删除：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function remove(key) {
+  root = removeNode(root, key)
+}
+
+function removeNode(node, key) {
+  if(node === null) 
+    return null
+  if(key &lt; node.key) {
+    return removeNode(node.left, key)
+  } else if(key &gt; node.key) {
+    return removeNode(node.right, key)
+  } else {
+    // key = node.key 删除
+    //叶子节点
+    if(node.left === null &amp;&amp; node.right === null) {
+      node = null
+      return node
+    }
+    // 只有一个子节点
+    if(node.left === null) {
+      node = node.right
+      return node
+    }
+    if(node.right === null) {
+      node = node.left
+      return node
+    }
+    // 有两个子节点
+    // 获取右子树的最小值替换当前节点
+    let minRight = findMinNode(node.right)
+    node.key = minRight.key
+    node.right = removeNode(node.right, minRight.key)
+    return node
+  }
+}
+
+// 获取 node 树最小节点
+function findMinNode(node) {
+  if(node) {
+    while(node &amp;&amp; node.right !== null) {
+      node = node.right
+    }
+    return node
+  }
+  return null
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br></div></div><h3 id="_8-6-2-遍历"><a href="#_8-6-2-遍历" class="header-anchor">#</a> 8.6.2 遍历</h3> <p><strong>中序遍历：</strong></p> <p>顾名思义，中序遍历就是把根放在中间的遍历，即按先左节点、然后根节点、最后右节点（左根右）的遍历方式。</p> <p>由于BST树任意节点都大于左子节点值小于等于右子节点值的特性，所以 <strong>中序遍历其实是对🌲进行排序操作</strong> ，并且是按从小到大的顺序排序。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function inOrderTraverse(callback) {
+  inOrderTraverseNode(root, callback)
+}
+
+function inOrderTraverseNode(node, callback) {
+  if(node !== null) {
+    // 先遍历左子树
+    inOrderTraverseNode(node.left, callback)
+    // 然后根节点
+    callback(node.key)
+    // 再遍历右子树
+    inOrderTraverseNode(node.right, callback)
+  }
+}
+
+// callback 每次将遍历到的结果打印到控制台
+function callback(key) {
+  console.log(key)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p><strong>先序遍历：</strong></p> <p>已经实现的中序遍历，先序遍历就很简单了，它是按根左右的顺序遍历</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function preOrderTraverse() {
+  preOrderTraverseNode(root, callback)
+}
+
+function preOrderTraverseNode(node, callback) {
+  if(node !== null) {
+    // 先根节点
+    callback(node.key)
+    // 然后遍历左子树
+    preOrderTraverseNode(node.left, callback)
+    // 再遍历右子树
+    preOrderTraverseNode(node.right, callback)
+  }
+}
+
+// callback 每次将遍历到的结果打印到控制台
+function callback(key) {
+  console.log(key)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p><strong>后序遍历：</strong></p> <p>后序遍历按照左右根的顺序遍历，实现也很简单。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function postOrderTraverse() {
+  postOrderTraverseNode(root, callback)
+}
+
+function postOrderTraverseNode(node, callback) {
+  if(node !== null) {
+    // 先遍历左子树
+    postOrderTraverseNode(node.left, callback)
+    // 然后遍历右子树
+    postOrderTraverseNode(node.right, callback)
+    // 最后根节点
+    callback(node.key)
+  }
+}
+
+// callback 每次将遍历到的结果打印到控制台
+function callback(key) {
+  console.log(key)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h3 id="_8-6-3-bst树的局限"><a href="#_8-6-3-bst树的局限" class="header-anchor">#</a> 8.6.3 BST树的局限</h3> <p>在理想情况下，二叉树每多一层，可以存储的元素都增加一倍。也就是说 n 个元素的二叉搜索树，对应的树高为 O(logn)。所以我们查找元素、插入元素的时间也为 O(logn)。</p> <p>当然这是理想情况下，但在实际应用中，并不是那么理想，例如一直递增或递减的给一个二叉查找树插入数据，那么所有插入的元素就会一直出现在一个树的左节点上，数型结构就会退化为链表结构，时间复杂度就会趋于 O(n)，这是不好的。</p> <p>而我们上面的平衡树就可以很好的解决这个问题，所以平衡二叉查找树（<strong>AVL树，下一章节探讨</strong>）由此诞生。</p> <h2 id="_8-7-平衡二叉查找树-avl树"><a href="#_8-7-平衡二叉查找树-avl树" class="header-anchor">#</a> 8.7 平衡二叉查找树（AVL树）</h2> <p>故名思义，既满足左右子树高度不大于 1， 又满足任意节点值大于它的左子节点值，小于等于它的右子节点值。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFcS51rt3xibblWvOS961wTykvu3hTmHZphvXPfZgibhTczicpHAYax2BLA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>AVL 这个名字的由来，是它的两个发明者G. M. Adelson-Velsky 和 Evgenii Landis 的缩写，AVL最初是他们两人在1962 年的论文「An algorithm for the organization of information」中提出来一种数据结构</p> <h2 id="_8-8-红黑树"><a href="#_8-8-红黑树" class="header-anchor">#</a> 8.8 红黑树</h2> <p>红黑树也是一种特殊的「二叉查找树」。</p> <p>到目前为止我们学习的 AVL 树和即将学习的红黑树都是二叉查找树的变体，可见二叉查找树真的是非常重要基础二叉树，如果忘了它的定义可以先回头看看。</p> <p>红黑树是一种比较难的数据结构，面试中很少有面试官让你手写一个红黑树，最多的话是考察你是否理解红黑树，以及为什么有了 AVL 树还需要红黑树，本部分就主要介绍这块。</p> <h3 id="_8-8-1-什么是红黑树"><a href="#_8-8-1-什么是红黑树" class="header-anchor">#</a> 8.8.1 什么是红黑树</h3> <p>红黑树是一种自平衡（并不是绝对平衡）的二叉查找树，它除了满足二分查找树的特点外，还满足以下条件：</p> <ul><li>节点是红色或黑色</li> <li>根节点必须是黑色节点</li> <li>所有的叶子节点都必须是值为 NULL 的黑节点</li> <li>如果一个节点是红色的，则它两个子节点都是黑色的</li> <li>从任一节点到达它的每个叶子节点的所有的路径，都有相同数目的黑色节点</li></ul> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFQLSsLpAiajBpnPnkFcGydia0Ybz1u2cBcpZ68WAaNic1Ynnaw4byegicSA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>很多人不理解为神马要有那么多条条框框，这里引用王争老师的说法：</p> <blockquote><p>我们都玩过魔方吧，其实魔方的复原是有固定算法的，遇到哪几面是什么样的，你就对应转几下，只要跟着这个复原步骤，最终肯定能把魔方复原。红黑树也是的，它也有固定的条条框框，在插入、删除时也有固定的调整方案。</p></blockquote> <p>这些条条框框保证红黑树的自平衡，保证红黑树从根节点到达每一个叶子节点的最长路径不会超过最短路径的 2 倍。</p> <p>而节点的路径长度决定着对节点的查询效率，这样我们确保了，最坏情况下的查找、插入、删除操作的时间复杂度不超过 O(logn) ，并且有较高的插入和删除效率。</p> <h3 id="_8-8-2-红黑树-vs-平衡二叉树-avl树"><a href="#_8-8-2-红黑树-vs-平衡二叉树-avl树" class="header-anchor">#</a> 8.8.2 红黑树 VS 平衡二叉树（AVL树）</h3> <ul><li>插入和删除操作，一般认为红黑树的删除和插入会比 AVL 树更快。因为，红黑树不像 AVL 树那样严格的要求平衡因子小于等于1，这就减少了为了达到平衡而进行的旋转操作次数，可以说是牺牲严格平衡性来换取更快的插入和删除时间。</li> <li>红黑树不要求有不严格的平衡性控制，但是红黑树的特点，使得任何不平衡都会在三次旋转之内解决。而 AVL 树如果不平衡，并不会控制旋转操作次数，旋转直到平衡为止。</li> <li>查找操作，AVL树的效率更高。因为 AVL 树设计比红黑树更加平衡，不会出现平衡因子超过 1 的情况，减少了树的平均搜索长度。</li></ul> <h2 id="_8-9-trie-树"><a href="#_8-9-trie-树" class="header-anchor">#</a> 8.9 Trie 树</h2> <h3 id="_8-9-1-什么是-trie-树"><a href="#_8-9-1-什么是-trie-树" class="header-anchor">#</a> 8.9.1 什么是 Trie 树</h3> <p>Trie 树，也称为字典树或前缀树，顾名思义，它是用来处理字符串匹配问题的数据结构，以及用来解决集合中查找固定前缀字符串的数据结构。</p> <h3 id="_8-9-2-trie树的应用-字符串匹配"><a href="#_8-9-2-trie树的应用-字符串匹配" class="header-anchor">#</a> 8.9.2 Trie树的应用：字符串匹配</h3> <p>在搜索引擎中输入关键字，搜索引擎都会弹出下拉框，显示各种关键字提示，例如必应：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxF1YtFeKQR6VPen15VemvvKyoOwJJQgIQUPpPVYsbO2YQy6ib3oY57fnw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>必应是如何处理这一过程的喃？</p> <p>或者，假设我们有n个单词的数据集，任意输入一串字符，如何在数据集中快速匹配出具有输入字符前缀的单词？</p> <p>这样类似的问题还有很多，在日常开发中，遇到类似的问题，我们应该如何去处理？选择怎样的数据结构与算法？尤其是遇到大规模数据时，如何更高效的处理？</p> <p>最简单的方法就是暴力，将数据集中的每个字符串，逐个字符的匹配输入字符，所有字符都匹配上则前缀匹配成功。这种方式也是我们开发当中最常用，最简单的方式，时间复杂度为 <code>O(m*n)</code> ，其中 <code>m</code> 为输入字符串长度， <code>n</code> 为数据集规模。</p> <p>这个时间复杂度是很高的，当 <code>n</code> 很大时，暴力法性能就会很差，此时必须重新寻找合适的算法。</p> <p>我们知道在树上查找、插入都比较方便，一般时间复杂度只与树的高度相关，我们可以通过树结构来处理，也就是我们要说的 Trie 树。其实，引擎搜索关键字提示底层也是通过 Trie 树实现的。</p> <p>举个例子：假设数据集有：<code>are</code> 、 <code>add</code> 、 <code>adopt</code> 、<code>set</code> 、<code>so</code> ，它构键过程：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFwib4cMt4Zf3K6sKHYM5hP5fCpASrquNQ4dlJIS6ialxZskh9sWgFzemw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>当所以的字符串插入完成，Trie树就构建完成了。</p> <p><strong>Trie树的本质</strong>是利用字符串的公共前缀，将重复的前缀合并在一起，其中根节点不包含任何信息，每个节点表示一个字符串中的字符，从根节点到叶节点的路径，表示一个字符串。</p> <p>在字符串匹配的时候，我们只要按照树的结构从上到下匹配即可。</p> <h2 id="_8-10-b-树、b-树-感兴趣进"><a href="#_8-10-b-树、b-树-感兴趣进" class="header-anchor">#</a> 8.10 B 树、B+ 树（感兴趣进）</h2> <h3 id="_8-10-1-多叉查找树"><a href="#_8-10-1-多叉查找树" class="header-anchor">#</a> 8.10.1 多叉查找树</h3> <p>既然二叉查找树已经理解了，那多叉查找树就很好理解了，它与二叉查找树唯一不同的是，它是多叉的。也就是说，多叉查找树允许一个节点存储多个元素，并且可以拥有多个子树。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFZCeKjZrdgIVAQoo9AALudjrlS5aG2ibKjzC2n614PhqnebC3icBgetIQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>为什么在有二叉查找树的情况下，还要有多叉查找树喃？</p> <p>我们知道树的深度越高，时间复杂度越高，性能越差，多叉查找树相对于二叉查找树来说，每个节点不止能拥有两个子节点，每层存放的节点数可比二叉查找树多，自然多叉查找树的的深度就要更小，性能也就更好。例如主要用于各大存储文件系统与数据库系统中的 B 树。</p> <h3 id="_8-10-2-b-树-b-tree"><a href="#_8-10-2-b-树-b-tree" class="header-anchor">#</a> 8.10.2 B 树(B-tree)</h3> <p>B 树，又称平衡多叉查找树。它是一种自平衡的多叉查找树。</p> <p>如果一棵多路查找树满足以下规则，则称之为 B 树：</p> <ul><li>排序方式：所有节点关键字是按递增次序排列，并遵循左小右大原则；</li> <li>子节点数：非叶节点的子节点数&gt;1，且&lt;=M ，且M&gt;=2，空树除外（注：M阶代表一个树节点最多有多少个查找路径，M=M叉（或路），当M=2则是2叉树，M=3则是3叉）；</li> <li>关键字数：枝节点（非根非叶）的关键字数量（K）应满足 (M+1)/2  &lt; K &lt; M</li> <li>所有叶子节点均在同一层、叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为null对应下图最后一层节点的空格子;</li></ul> <p>最后，我们使用一张图加深一下理解：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFAQVuTIwichBvt6jUeyRVj0rxYlPyKj71WW51c6oic1UgFWr30qJHUrWw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h3 id="_8-10-3-b-树"><a href="#_8-10-3-b-树" class="header-anchor">#</a> 8.10.3 B+树</h3> <p>B+树与B树一样都是多叉平衡查找树（又名多路平衡查找树），B+树与B树不同的是：</p> <ul><li><p>B+树改进了B树，让内结点（非叶节点）只作索引使用，去掉了其中指向data的指针，使得每个结点中能够存放更多的key， 因此能有更大的出度。</p> <p>这有什么用？这样就意味着存放同样多的key，树的层高能进一步被压缩，使得检索的时间更短</p></li> <li><p>中间节点的元素数量与子树一致，而B树子树数量与元素数量多1</p></li> <li><p>叶子节点是一个链表，可以通过指针顺序查找</p></li></ul> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFdI1ohgia2Ct2PYB4m9ZA4Zm6Bfy1dredTMqia2352obFzyv52EZpZFug/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h2 id="_8-11-加深"><a href="#_8-11-加深" class="header-anchor">#</a> 8.11 加深</h2> <h3 id="_8-11-1-二叉树的中序遍历"><a href="#_8-11-1-二叉树的中序遍历" class="header-anchor">#</a> 8.11.1 二叉树的中序遍历</h3> <p><strong>递归实现：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 中序遍历
+const inorderTraversal = (root) =&gt; {
+    let result = []
+    var inorderTraversal = (node) =&gt; {
+        if(node) {
+            // 先遍历左子树
+            inorderTraversal(node.left)
+           // 再根节点
+            result.push(node.val)
+            // 最后遍历右子树
+            inorderTraversal(node.right)
+        }
+    }
+    inorderTraversal(root)
+    return result
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p><strong>迭代实现：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const inorderTraversal = function(root) {
+    let list = []
+    let stack = []
+    let node = root
+    while(stack.length || node) { 
+        if(node) {
+            stack.push(node)
+            node = node.left
+            continue
+        }
+        node = stack.pop()
+        list.push(node.val)
+        node = node.right
+    }
+    return list
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>进一步简化：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 中序遍历
+const inorderTraversal = (root) =&gt; {
+    let list = []
+    let stack = []
+    let node = root
+    
+    while(node || stack.length) {
+    // 遍历左子树
+      while(node) {
+       stack.push(node)
+        node = node.left
+      }
+      
+      node = stack.pop()
+      list.push(node.val)
+      node = node.right
+    }
+    return list
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>空间复杂度：O(n)</li> <li>时间复杂度：O(n)</li></ul> <p>更多解答</p> <h3 id="_8-11-2-二叉树的后序遍历"><a href="#_8-11-2-二叉树的后序遍历" class="header-anchor">#</a> 8.11.2 二叉树的后序遍历</h3> <p><strong>递归实现</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 后序遍历
+const postorderTraversal = function(root) {
+    let result = []
+    var postorderTraversalNode = (node) =&gt; {
+        if(node) {
+            // 先遍历左子树
+            postorderTraversalNode(node.left)
+            // 再遍历右子树
+            postorderTraversalNode(node.right)
+            // 最后根节点
+            result.push(node.val)
+        }
+    }
+    postorderTraversalNode(root)
+    return result
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p><strong>迭代实现</strong></p> <p><strong>解题思路：</strong> 后序遍历与前序遍历不同的是：</p> <ul><li>后序遍历是左右根</li> <li>而前序遍历是根左右</li></ul> <p>如果我们把前序遍历的 <code>list.push(node.val)</code> 变更为 <code>list.unshift(node.val)</code> （遍历结果逆序），那么遍历顺序就由 <strong>根左右</strong> 变更为 <strong>右左根</strong></p> <p>然后我们仅需将  <strong>右左根</strong> 变更为  <strong>左右根</strong> 即可完成后序遍</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 后序遍历
+const postorderTraversal = (root) =&gt; {
+    const list = [];
+    const stack = [];
+    
+    // 当根节点不为空的时候，将根节点入栈
+    if(root) stack.push(root)
+    while(stack.length &gt; 0) {
+        const node = stack.pop()
+        // 根左右=&gt;右左根
+        list.unshift(node.val)
+        
+        // 先进栈左子树后右子树
+        // 出栈的顺序就变更为先右后左
+        // 右先头插法入list
+        // 左再头插法入list
+        // 实现右左根=&gt;左右根
+        if(node.left !== null) {
+            stack.push(node.left)
+        }
+        if(node.right !== null) {
+            stack.push(node.right)
+        }
+    }
+    return list
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>空间复杂度：O(n)</li> <li>时间复杂度：O(n)</li></ul> <p>更多解答</p> <h3 id="_8-11-3-二叉树的层次遍历"><a href="#_8-11-3-二叉树的层次遍历" class="header-anchor">#</a> 8.11.3 二叉树的层次遍历</h3> <p>给定一个二叉树，返回其节点值自底向上的层次遍历。（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</p> <p>例如：给定二叉树 <code>[3,9,20,null,null,15,7]</code> ,</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>返回其自底向上的层次遍历为：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>[
+  [15,7],
+  [9,20],
+  [3]
+]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="解法一-bfs-广度优先遍历"><a href="#解法一-bfs-广度优先遍历" class="header-anchor">#</a> 解法一：BFS（广度优先遍历）</h4> <p>BFS 是按层层推进的方式，遍历每一层的节点。题目要求的是返回每一层的节点值，所以这题用 BFS 来做非常合适。BFS 需要用队列作为辅助结构，我们先将根节点放到队列中，然后不断遍历队列。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const levelOrderBottom = function(root) {
+    if(!root) return []
+    let res = [], 
+        queue = [root]
+    while(queue.length) {
+        let curr = [],
+            temp = []
+        while(queue.length) {
+            let node = queue.shift()
+            curr.push(node.val)
+            if(node.left) temp.push(node.left)
+            if(node.right) temp.push(node.right)
+        }
+        res.push(curr)
+        queue = temp
+    }
+    return res.reverse()
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p><strong>复杂度分析</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(n)</li></ul> <h4 id="解法二-dfs-深度优先遍历"><a href="#解法二-dfs-深度优先遍历" class="header-anchor">#</a> 解法二：DFS（深度优先遍历）</h4> <p>DFS 是沿着树的深度遍历树的节点，尽可能深地搜索树的分支</p> <p>DFS 做本题的主要问题是：DFS 不是按照层次遍历的。为了让递归的过程中同一层的节点放到同一个列表中，在递归时要记录每个节点的深度 <code>depth</code> 。递归到新节点要把该节点放入 <code>depth</code> 对应列表的末尾。</p> <p>当遍历到一个新的深度 <code>depth</code> ，而最终结果 <code>res</code> 中还没有创建 <code>depth</code> 对应的列表时，应该在 <code>res</code> 中新建一个列表用来保存该 <code>depth</code> 的所有节点。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const levelOrderBottom = function(root) {
+    const res = []
+    var dep = function (node, depth){
+        if(!node) return
+        res[depth] = res[depth]||[]
+        res[depth].push(node.val)
+        dep(node.left, depth + 1)
+        dep(node.right, depth + 1)
+    }
+    dep(root, 0)
+    return res.reverse()   
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(h)，h为树的高度</li></ul> <p>更多解答</p> <h3 id="_8-11-4-二叉树的层序遍历"><a href="#_8-11-4-二叉树的层序遍历" class="header-anchor">#</a> 8.11.4 二叉树的层序遍历</h3> <p>给你一个二叉树，请你返回其按 <strong>层序遍历</strong> 得到的节点值。（即逐层地，从左到右访问所有节点）。</p> <p>**示例：**二叉树：<code>[3,9,20,null,null,15,7]</code> ,</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>返回其层次遍历结果：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>[
+  [3],
+  [9,20],
+  [15,7]
+]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>感谢 <strong>@plane-hjh</strong> 的解答：</p> <p>这道题和二叉树的层次遍历相似，只需要把 <code>reverse()</code> 去除就可以了</p> <p><strong>广度优先遍历</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const levelOrder = function(root) {
+    if(!root) return []
+    let res = [], 
+        queue = [root]
+    while(queue.length) {
+        let curr = [],
+            temp = []
+        while(queue.length) {
+            let node = queue.shift()
+            curr.push(node.val)
+            if(node.left) temp.push(node.left)
+            if(node.right) temp.push(node.right)
+        }
+        res.push(curr)
+        queue = temp
+    }
+    return res
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p><strong>深度优先遍历</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const levelOrder = function(root) {
+    const res = []
+    var dep = function (node, depth){
+        if(!node) return
+        res[depth] = res[depth]||[]
+        res[depth].push(node.val)
+        dep(node.left, depth + 1)
+        dep(node.right, depth + 1)
+    }
+    dep(root, 0)
+    return res
+}; 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>更多解答</p> <h3 id="_8-11-5-重构二叉树-从前序与中序遍历序列构造二叉树"><a href="#_8-11-5-重构二叉树-从前序与中序遍历序列构造二叉树" class="header-anchor">#</a> 8.11.5 重构二叉树：从前序与中序遍历序列构造二叉树</h3> <p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p> <p>**注意:**你可以假设树中没有重复的元素。</p> <p>例如，给出</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>返回如下的二叉树：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>限制：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>0 &lt;= 节点个数 &lt;= 5000
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>推荐 <strong>@luweiCN</strong> 的解答：</p> <p>仔细分析前序遍历和中序遍历可以知道（以题目为例）：</p> <ol><li>前序遍历的第一个元素一定是根节点，这里是<code>3</code></li> <li>找到根节点之后，根节点在中序遍历中把数组一分为二，即两个数组<code>[9]</code>和<code>[15, 20, 7]</code>，这两个数组分别是根节点<code>3</code>的左子树和右子树的中序遍历。</li> <li>前序遍历数组去掉根节点之后是<code>[9,20,15,7]</code>，而这个数组的第1项<code>[9]</code>（左子树的大小）和后3项<code>[20, 15, 7]</code>（右子树的大小）又分别是左子树和右子树的前序遍历 到这里已经很明显了，用递归</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>function TreeNode(val) {
+    this.val = val;
+    this.left = this.right = null;
+}
+const buildTree = function (preorder, inorder) {
+    if (preorder.length) {
+        let head = new TreeNode(preorder.shift());
+        let index = inorder.indexOf(head.val);
+        head.left = buildTree(
+            preorder.slice(0, index),
+            inorder.slice(0, index)
+        );
+        head.right = buildTree(preorder.slice(index), inorder.slice(index + 1));
+        // 这里要注意，preorder前面shift一次长度比inorder小1
+        return head;
+    } else {
+        return null;
+    }
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>更多解答</p> <h3 id="_8-11-6-二叉树的最大深度"><a href="#_8-11-6-二叉树的最大深度" class="header-anchor">#</a> 8.11.6 二叉树的最大深度</h3> <p>给定一个二叉树，找出其最大深度。</p> <p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p> <p><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p> <p>**示例：**给定二叉树 <code>[3,9,20,null,null,15,7]</code> ，</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>返回它的最大深度 3</p> <p><strong>解答：递归</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const maxDepth = function(root) {
+    if(!root) return 0 
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(log⁡n)</li></ul> <p>更多解答</p> <h3 id="_8-11-7-二叉树的最近公共祖先"><a href="#_8-11-7-二叉树的最近公共祖先" class="header-anchor">#</a> 8.11.7 二叉树的最近公共祖先</h3> <p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p> <p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p> <p>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFctcH7y2y8LuNOxFU1henb0bjbqNwLdVxRlr2LOR2pRfibHUicLT5VgDg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p><strong>示例 1:</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+输出: 3
+解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>示例 2:</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+输出: 5
+解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>说明</strong>:</p> <ul><li>所有节点的值都是唯一的。</li> <li>p、q 为不同节点且均存在于给定的二叉树中。</li></ul> <p><strong>解答：递归实现</strong></p> <p><strong>解题思路：</strong></p> <p>如果树为空树或 <code>p</code> 、 <code>q</code> 中任一节点为根节点，那么 <code>p</code> 、 <code>q</code> 的最近公共节点为根节点</p> <p>如果不是，即二叉树不为空树，且 <code>p</code> 、 <code>q</code> 为非根节点，则递归遍历左右子树，获取左右子树的最近公共祖先，</p> <ul><li>如果  <code>p</code> 、 <code>q</code> 节点在左右子树的最近公共祖先都存在，说明 <code>p</code> 、 <code>q</code> 节点分布在左右子树的根节点上，此时二叉树的最近公共祖先为 <code>root</code></li> <li>若 <code>p</code> 、 <code>q</code> 节点在左子树最近公共祖先为空，那 <code>p</code> 、<code>q</code> 节点位于左子树上，最终二叉树的最近公共祖先为右子树上 <code>p</code> 、<code>q</code> 节点的最近公共祖先</li> <li>若 <code>p</code> 、 <code>q</code> 节点在右子树最近公共祖先为空，同左子树 <code>p</code> 、 <code>q</code> 节点的最近公共祖先为空一样的判定逻辑</li> <li>如果  <code>p</code> 、 <code>q</code> 节点在左右子树的最近公共祖先都为空，则返回 <code>null</code></li></ul> <p><strong>代码实现：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const lowestCommonAncestor = function(root, p, q) {
+    if(root == null || root == p || root == q) return root
+    const left = lowestCommonAncestor(root.left, p, q)
+    const right = lowestCommonAncestor(root.right, p, q)
+    if(left === null) return right
+    if(right === null) return left
+    return root
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(n)</li></ul> <p>更多解答</p> <h3 id="_8-11-8-平衡二叉树"><a href="#_8-11-8-平衡二叉树" class="header-anchor">#</a> 8.11.8 平衡二叉树</h3> <p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p> <p>本题中，一棵高度平衡二叉树定义为：</p> <blockquote><p>一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</p></blockquote> <p><strong>示例 1:</strong></p> <p>给定二叉树 <code>[3,9,20,null,null,15,7]</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>返回 <code>true</code> 。</p> <p><strong>示例 2:</strong></p> <p>给定二叉树 <code>[1,2,2,3,3,null,null,4,4]</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>      1
+     / \
+    2   2
+   / \
+  3   3
+ / \
+4   4
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>返回 <code>false</code> 。</p> <h4 id="解答一-自顶向下-暴力法"><a href="#解答一-自顶向下-暴力法" class="header-anchor">#</a> 解答一：自顶向下（暴力法）</h4> <p><strong>解题思路：</strong> 自顶向下的比较每个节点的左右子树的最大高度差，如果二叉树中每个节点的左右子树最大高度差小于等于 <code>1</code> ，即每个子树都平衡时，此时二叉树才是平衡二叉树</p> <p><strong>代码实现：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const isBalanced = function (root) {
+  if(!root) return true
+  return Math.abs(depth(root.left) - depth(root.right)) &lt;= 1
+        &amp;&amp; isBalanced(root.left)
+        &amp;&amp; isBalanced(root.right)
+}
+const depth = function (node) {
+    if(!node) return -1
+    return 1 + Math.max(depth(node.left), depth(node.right))
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(nlogn)，计算 <code>depth</code> 存在大量冗余操作</li> <li>空间复杂度：O(n)</li></ul> <h4 id="解答二-自底向上-优化"><a href="#解答二-自底向上-优化" class="header-anchor">#</a> 解答二：自底向上（优化）</h4> <p><strong>解题思路：</strong> 利用后续遍历二叉树（左右根），从底至顶返回子树最大高度，判定每个子树是不是平衡树 ，如果平衡，则使用它们的高度判断父节点是否平衡，并计算父节点的高度，如果不平衡，返回 <code>-1</code> 。</p> <p>遍历比较二叉树每个节点 的左右子树深度：</p> <ul><li>比较左右子树的深度，若差值大于 <code>1</code> 则返回一个标记 <code>-1</code> ，表示当前子树不平衡</li> <li>左右子树有一个不是平衡的，或左右子树差值大于 <code>1</code> ，则二叉树不平衡</li> <li>若左右子树平衡，返回当前树的深度（左右子树的深度最大值 <code>+1</code> ）</li></ul> <p><strong>代码实现：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const isBalanced = function (root) {
+    return balanced(root) !== -1
+};
+const balanced = function (node) {
+    if (!node) return 0
+    const left = balanced(node.left)
+    const right = balanced(node.right)
+    if (left === -1 || right === -1 || Math.abs(left - right) &gt; 1) {
+        return -1
+    }
+    return Math.max(left, right) + 1
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(n)</li></ul> <p>更多解答</p> <h3 id="_8-11-9-路径总和"><a href="#_8-11-9-路径总和" class="header-anchor">#</a> 8.11.9 路径总和</h3> <p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p> <p><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p> <p><strong>示例:</strong> 给定如下二叉树，以及目标和 <code>sum = 22</code> ，</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>          5
+         / \
+        4   8
+       /   / \
+      11  13  4
+     /  \      \
+    7    2      1
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>返回 <code>true</code> , 因为存在目标和为 <code>22</code> 的根节点到叶子节点的路径 <code>5-&gt;4-&gt;11-&gt;2</code>。</p> <p><strong>解题思路：</strong></p> <p>只需要遍历整棵树</p> <ul><li>如果当前节点不是叶子节点，递归它的所有子节点，传递的参数就是 sum 减去当前的节点值；</li> <li>如果当前节点是叶子节点，判断参数 sum 是否等于当前节点值，如果相等就返回 true，否则返回 false。</li></ul> <p><strong>代码实现：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var hasPathSum = function(root, sum) {
+  // 根节点为空
+  if (root === null) return false;
+  
+  // 叶节点 同时 sum 参数等于叶节点值
+  if (root.left === null &amp;&amp; root.right === null) return root.val === sum;
+
+  // 总和减去当前值，并递归
+  sum = sum - root.val
+  return hasPathSum(root.left, sum) || hasPathSum(root.right, sum);
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>更多解答</p> <h3 id="_8-11-10-对称二叉树"><a href="#_8-11-10-对称二叉树" class="header-anchor">#</a> 8.11.10 对称二叉树</h3> <p>给定一个二叉树，检查它是否是镜像对称的。</p> <p>例如，二叉树 <code>[1,2,2,3,4,4,3]</code> 是对称的。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>但是下面这个 <code>[1,2,2,null,3,null,3]</code> 则不是镜像对称的:</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    1
+   / \
+  2   2
+   \   \
+   3    3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>进阶：</strong></p> <p>你可以运用递归和迭代两种方法解决这个问题吗？</p> <p><strong>解答：</strong></p> <p>一棵二叉树对称，则需要满足：根的左右子树是镜像对称的</p> <p>也就是说，每棵树的左子树都和另外一颗树的右子树镜像对称，左子树的根节点值与右子树的根节点值相等</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKkeAcq7DMpxvCDrsUJulZxFDry0IxgNibAu9b81l7XGy3oV6Y5tUvha0OJ7EBS49nk8lpxsvkAU8UQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>所以，我们需要比较：</p> <ul><li>左右子树的根节点值是否相等</li> <li>左右子树是否镜像对称</li></ul> <p>边界条件：</p> <ul><li>左右子树都为 <code>null</code> 时，返回 <code>true</code></li> <li>左右子树有一个 <code>null</code> 时，返回 <code>false</code></li></ul> <h4 id="解法一-递归"><a href="#解法一-递归" class="header-anchor">#</a> 解法一：递归</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>const isSymmetric = function(root) {
+    if(!root) return true
+    var isEqual = function(left, right) {
+        if(!left &amp;&amp; !right) return true
+        if(!left || !right) return false
+        return left.val === right.val
+         &amp;&amp; isEqual(left.left, right.right)
+         &amp;&amp; isEqual(left.right, right.left)
+    }
+    return isEqual(root.left, root.right)
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(n)</li></ul> <h4 id="解法二-迭代"><a href="#解法二-迭代" class="header-anchor">#</a> 解法二：迭代</h4> <p>利用栈来记录比较的过程，实际上，递归就使用了调用栈，所以这里我们可以使用栈来模拟递归的过程</p> <ul><li>首先根的左右子树入栈</li> <li>将左右子树出栈，比较两个数是否互为镜像</li> <li>如果左右子树的根节点值相等，则将左子树的 <code>left</code> 、右子树的 <code>right</code> 、左子树的 <code>right</code> 、右子树的 <code>left</code> 依次入栈</li> <li>继续出栈（一次出栈两个进行比较）…….</li></ul> <p>依次循环出栈入栈，直到栈为空</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const isSymmetric = function(root) {
+    if(!root) return true
+    let stack = [root.left, root.right]
+    while(stack.length) {
+        let right = stack.pop()
+        let left = stack.pop()
+        if(left &amp;&amp; right) {
+            if(left.val !== right.val) return false
+            stack.push(left.left)
+            stack.push(right.right)
+            stack.push(left.right)
+            stack.push(right.left)
+        } else if(left || right) {
+            return false
+        }
+    }
+    return true
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(n)</li> <li>空间复杂度：O(n)</li></ul> <p>剑指Offer&amp;leetcode101：对称二叉树</p> <h3 id="_8-11-11给定一个二叉树-找到该树中两个指定节点间的最短距离"><a href="#_8-11-11给定一个二叉树-找到该树中两个指定节点间的最短距离" class="header-anchor">#</a> 8.11.11给定一个二叉树, 找到该树中两个指定节点间的最短距离</h3> <blockquote><p>function TreeNode(val) { this.val = val; this.left = this.right = null; }</p></blockquote> <p><strong>解答：</strong></p> <p>求最近公共祖先节点，然后再求最近公共祖先节点到两个指定节点的路径，再求两个节点的路径之和</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const shortestDistance = function(root, p, q) {
+    // 最近公共祖先
+    let lowestCA = lowestCommonAncestor(root, p, q)
+    // 分别求出公共祖先到两个节点的路经
+    let pDis = [], qDis = []
+    getPath(lowestCA, p, pDis)
+    getPath(lowestCA, q, qDis)
+    // 返回路径之和
+    return (pDis.length + qDis.length)
+}
+
+// 最近公共祖先
+const lowestCommonAncestor = function(root, p, q) {
+    if(root === null || root === p || root === q) return root
+    const left = lowestCommonAncestor(root.left, p, q)
+    const right = lowestCommonAncestor(root.right, p, q)
+    if(left === null) return right
+    if(right === null) return left
+    return root
+}
+
+const getPath = function(root, p, paths) {
+    // 找到节点，返回 true
+    if(root === p) return true
+    // 当前节点加入路径中
+    paths.push(root)
+    let hasFound = false
+    // 先找左子树
+    if (root.left !== null)
+        hasFound = getPath(root.left, p, paths)
+    // 左子树没有找到，再找右子树
+    if (!hasFound &amp;&amp; root.right !== null)
+        hasFound = getPath(root.right, p, paths)
+    // 没有找到，说明不在这个节点下面，则弹出
+    if (!hasFound)
+        paths.pop()
+    return hasFound
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><p>更多解答</p> <h3 id="_8-11-12-二叉搜索树中第k小的元素"><a href="#_8-11-12-二叉搜索树中第k小的元素" class="header-anchor">#</a> 8.11.12 二叉搜索树中第K小的元素</h3> <p>给定一个二叉搜索树，编写一个函数 <code>kthSmallest</code> 来查找其中第 <code>k</code> 个最小的元素。</p> <p>**说明：**你可以假设 k 总是有效的，1 ≤ k ≤ 二叉搜索树元素个数。</p> <p><strong>示例 1:</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入: root = [3,1,4,null,2], k = 1
+   3
+  / \
+ 1   4
+  \
+   2
+输出: 1
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><strong>示例 2:</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入: root = [5,3,6,2,4,null,null,1], k = 3
+       5
+      / \
+     3   6
+    / \
+   2   4
+  /
+ 1
+输出: 3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>**进阶：**如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 k 小的值，你将如何优化 kthSmallest 函数？</p> <p><strong>解答：</strong></p> <p>我们知道：中序遍历其实是对🌲进行排序操作 ，并且是按从小到大的顺序排序，所以本题就很简单了</p> <p><strong>解题思路：</strong> 中序遍历二叉搜索树，输出第 k 个既可</p> <p><strong>代码实现（递归）：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const kthSmallest = function(root, k) {
+    let res = null
+    let inOrderTraverseNode = function(node) {
+        if(node !== null &amp;&amp; k &gt; 0) {
+            // 先遍历左子树
+            inOrderTraverseNode(node.left)
+            // 然后根节点
+            if(--k === 0) {
+                res = node.val
+                return 
+            }
+            // 再遍历右子树
+            inOrderTraverseNode(node.right)
+        }
+    }
+    inOrderTraverseNode(root)
+    return res
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(k)</li> <li>空间复杂度：不考虑递归栈所占用的空间，空间复杂度为 O(1)</li></ul> <p><strong>代码实现（迭代）：</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const kthSmallest = function(root, k) {
+    let stack = []
+    let node = root
+    
+    while(node || stack.length) {
+        // 遍历左子树
+        while(node) {
+            stack.push(node)
+            node = node.left
+        }
+      
+        node = stack.pop()
+        if(--k === 0) {
+            return node.val
+        }
+        node = node.right
+    }
+    return null
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p><strong>复杂度分析：</strong></p> <ul><li>时间复杂度：O(H+K)</li> <li>空间复杂度：空间复杂度为 O(H+K)</li></ul> <p>更多解答</p> <h3 id="_8-11-13-实现-trie-前缀树"><a href="#_8-11-13-实现-trie-前缀树" class="header-anchor">#</a> 8.11.13 实现 Trie（前缀树）</h3> <p>实现一个 Trie (前缀树)，包含 <code>insert</code> , <code>search</code> , 和 <code>startsWith</code> 这三个操作。</p> <p><strong>示例:</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Trie trie = new Trie();
+
+trie.insert(&quot;apple&quot;);
+trie.search(&quot;apple&quot;);   // 返回 true
+trie.search(&quot;app&quot;);     // 返回 false
+trie.startsWith(&quot;app&quot;); // 返回 true
+trie.insert(&quot;app&quot;);   
+trie.search(&quot;app&quot;);     // 返回 true
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><strong>说明:</strong></p> <ul><li>你可以假设所有的输入都是由小写字母 a-z 构成的。</li> <li>保证所有输入均为非空字符串。</li></ul> <p><strong>解答：</strong></p> <p>我们可以搭建一个初始 Trie 树结构：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Trie 树
+var Trie = function() {};
+// 插入
+Trie.prototype.insert = function(word) {};
+// 搜索
+Trie.prototype.search = function(word) {};
+// 前缀匹配
+Trie.prototype.startsWith = function(prefix) {};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><strong>1. 如何存储一个 Trie 树</strong></p> <p>首先，我们需要实现一个 Trie 树，我们知道，二叉树的存储（链式存储）是通过左右指针来实现的，即二叉树中的节点：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function BinaryTreeNode(key) {
+    // 保存当前节点 key 值
+    this.key = key
+    // 指向左子节点
+    this.left = null
+    // 指向右子节点
+    this.right = null
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>在这里，它不止有两个字节点，它最多有 a-z 总共有26个子节点。最简单的实现是把她们保存在一个字典里：</p> <ul><li><code>isEnd</code> ：当前是否是结束节点</li> <li><code>children</code> ：当前节点的子节点，这里我们使用 <code>key:value</code> 形式实现，<code>key</code> 为子节点字符，<code>value</code> 指向子节点的孩子节点</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>var TrieNode = function() {
+    // next 放入当前节点的子节点
+    this.next = {};
+    // 当前是否是结束节点
+    this.isEnd = false;
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>所以：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Trie 树
+var Trie = function() {
+    this.root = new TrieNode()
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>2. 插入</strong></p> <ul><li>首先判断插入节点是否为空，为空则返回</li> <li>遍历待插入字符，从根节点逐字符查找 Trie 树，如果字符查找失败则插入，否则继续查找下一个字符</li> <li>待插入字符遍历完成，设置最后字符的 <code>isEnd</code> 为 <code>true</code></li> <li>返回插入成功</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>Trie.prototype.insert = function(word) {
+    if (!word) return false
+    let node = this.root
+    for (let i = 0; i &lt; word.length; i++) {
+        if (!node.next[word[i]]) {
+            node.next[word[i]] = new TrieNode()
+        }
+        node = node.next[word[i]]
+    }
+    node.isEnd = true
+    return true
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><strong>3. 搜索</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Trie.prototype.search = function(word) {
+    if (!word) return false
+    let node = this.root
+    for (let i = 0; i &lt; word.length; ++i) {
+        if (node.next[word[i]]) {
+            node = node.next[word[i]]
+        } else {
+            return false
+        }
+    }
+    return node.isEnd
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><strong>4. 前缀匹配</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Trie.prototype.startsWith = function(prefix) {
+    if (!prefix) return true
+    let node = this.root
+    for (let i = 0; i &lt; prefix.length; ++i) {
+        if (node.next[prefix[i]]) {
+            node = node.next[prefix[i]]
+        } else {
+            return false
+        }
+    }
+    return true
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></div> <!----> <div class="content__content-bottom"></div> <footer class="page-meta"><!----> <div class="meta-item update-time"><span class="label">Last update:</span> <span class="info">July 15, 2021 20:37</span></div> <div class="meta-item contributors"><span class="label">Contributors: </span> <span class="info"><span title="email: 596777598@qq.com" class="contributor">
+          xuwen
+        </span> <!----></span></div></footer> <!----> <!----> <!----> <div class="content__page-bottom"></div></main> <!----></div><div class="global-ui"><!----><!----><div id="pwa-install"><!----> <div id="install-modal-wrapper" style="display:none;"><div class="background"></div> <div class="install-modal"><div class="header"><button aria-label="Close" class="close-button"><svg width="23" height="22" xmlns="http://www.w3.org/2000/svg" class="icon close-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.12.358a1.224 1.224 0 011.729 0l8.92 8.914L20.686.358a1.224 1.224 0 011.73 1.728L13.497 11l8.92 8.913a1.222 1.222 0 11-1.73 1.729l-8.919-8.913-8.92 8.913a1.224 1.224 0 01-1.729-1.729L10.04 11l-8.92-8.914a1.222 1.222 0 010-1.728z" fill="currentColor"></path></svg></button> <div class="logo"><!----> <div class="title"><h1></h1> <p class="desc">This app can be installed on your PC or mobile device.  This will allow this web app to look and behave like any other installed app.  You will find it in your app lists and be able to pin it to your home screen, start menus or task bars.  This installed web app will also be able to safely interact with other apps and your operating system. </p></div></div></div> <div class="content"><div class="highlight"><!----> <!----></div> <div class="description"><h3>Description</h3> <p></p></div></div> <div class="button-wrapper"><button class="install-button">
+        Install <span></span></button> <button class="cancel-button">
+        Cancel
+      </button></div></div></div></div><div tabindex="-1" role="dialog" aria-hidden="true" class="pswp"><div class="pswp__bg"></div> <div class="pswp__scroll-wrap"><div class="pswp__container"><div class="pswp__item"></div> <div class="pswp__item"></div> <div class="pswp__item"></div></div> <div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><div class="pswp__counter"></div> <button class="pswp__button pswp__button--close"></button> <button class="pswp__button pswp__button--share"></button> <button class="pswp__button pswp__button--fs"></button> <button class="pswp__button pswp__button--zoom"></button> <div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div> <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div> <button class="pswp__button pswp__button--arrow--left"></button> <button class="pswp__button pswp__button--arrow--right"></button> <div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div></div></div></div>
+    <script src="/assets/js/app.20b59c1c.js" defer></script><script src="/assets/js/vendors~layout-Layout.7ae890f6.js" defer></script><script src="/assets/js/vendors~layout-Blog~layout-Layout~layout-NotFound.c088b2c6.js" defer></script><script src="/assets/js/page-81树.c09e86ec.js" defer></script><script src="/assets/js/vendors~layout-Blog~layout-Layout~layout-NotFound~layout-Slide.ee9dd2ad.js" defer></script>
+  </body>
+</html>
